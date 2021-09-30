@@ -1,12 +1,13 @@
-﻿using System;
+﻿using MyTimeTracker.Core.DAL;
 
 namespace MyTimeTracker.CL
 {
-    internal static class Program
-    {
-        private static void Main(string[] args)
-        {
-            Console.WriteLine("Hello World!");
-        }
-    }
+	public static class Program
+	{
+		public static void Main(string[] args)
+		{
+			var timeTracker = new ConsoleTimeTracker(new SqliteTimeEntryRepository());
+			timeTracker.Run();
+		}
+	}
 }
