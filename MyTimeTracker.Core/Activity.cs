@@ -1,4 +1,7 @@
-﻿namespace MyTimeTracker.Core
+﻿using System;
+using System.Collections;
+
+namespace MyTimeTracker.Core
 {
 	public enum Activity
 	{

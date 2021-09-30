@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 namespace MyTimeTracker.Core
 {
@@ -34,6 +35,18 @@ namespace MyTimeTracker.Core
 		public void Load()
 		{
 			TimeEntries = _repository!.GetTimeEntries(Date).ToList();
+		}
+
+		public string ToPrettyString()
+		{
+			var result = new StringBuilder();
+			result.AppendLine($"Date: {Date.ToShortDateString()}");
+			foreach (var timeEntry in TimeEntries.OrderByDescending(x => x.StartTime))
+			{
+				result.AppendLine(timeEntry.ToPrettyString());
+			}
+
+			return result.ToString();
 		}
 	}
 }
