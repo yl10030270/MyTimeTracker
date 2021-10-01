@@ -14,8 +14,13 @@ namespace MyTimeTracker.Core.DAL
 
 		public TimeTrackerSqliteContext()
 		{
+#if DEBUG
+			DbPath =
+				$"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}{Path.DirectorySeparatorChar}TimeTrackerDev.db";
+#else
 			DbPath =
 				$"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}{Path.DirectorySeparatorChar}TimeTracker.db";
+#endif
 		}
 
 		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
