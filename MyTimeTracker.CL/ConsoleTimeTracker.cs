@@ -33,7 +33,7 @@ namespace MyTimeTracker.CL
 					{
 						case "c":
 						case "C":
-							PunchClock.CurrentTimeEntry.Comment = input[1];
+							PunchClock.CurrentTimeEntry.Comment = input.Skip(1).JoinToString(null, " ");
 							Console.WriteLine();
 							Console.WriteLine(PunchClock.CurrentTimeEntry.ToPrettyString());
 							Console.WriteLine();

@@ -27,7 +27,7 @@ namespace MyTimeTracker.Core
 		public string ToPrettyString()
 		{
 			return
-				$"{(StartTime == default ? "null" : StartTime.ToShortTimeString())} -> {(StopTime == default ? "null" : StopTime.ToShortTimeString())} {TotalHours:F} {Activity} {Comment}";
+				$"{(StartTime == default ? "null" : StartTime.ToShortTimeString())} -> {(StopTime == default ? "null" : StopTime.ToShortTimeString())} | {TotalHours:F} | {Activity} | {Comment}";
 		}
 	}
 }
