@@ -39,12 +39,15 @@ namespace MyTimeTracker.Core
 
 		public string ToPrettyString()
 		{
-			var result = new StringBuilder();
+			var result        = new StringBuilder();
+			var totalDuration = TimeSpan.Zero;
 			result.AppendLine($"Date: {Date.ToShortDateString()}");
 			foreach (var timeEntry in TimeEntries.OrderByDescending(x => x.StartTime))
 			{
+				totalDuration += timeEntry.Duration;
 				result.AppendLine(timeEntry.ToPrettyString());
 			}
+			result.AppendLine($"Total Duration: {new DateTime(totalDuration.Ticks):HH:mm:ss}");
 
 			return result.ToString();
 		}

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace MyTimeTracker.Core
 {
@@ -6,13 +7,13 @@ namespace MyTimeTracker.Core
 	{
 		private static ITimeEntryRepository? _repository;
 
-		public int      TimeEntryId    { get; set; }
-		public DateTime StartTime      { get; set; }
-		public DateTime StopTime       { get; set; }
-		public Activity Activity       { get; set; }
-		public string?  Comment        { get; set; }
-		public bool     IsActive       => StartTime != default && StopTime == default;
-		public double   TotalHours => Math.Max((StopTime - StartTime).TotalHours, 0);
+		public int      TimeEntryId { get; set; }
+		public DateTime StartTime   { get; set; }
+		public DateTime StopTime    { get; set; }
+		public Activity Activity    { get; set; }
+		public string?  Comment     { get; set; }
+		public bool     IsActive    => StartTime != default && StopTime == default;
+		public TimeSpan Duration    => new[] {(StopTime - StartTime), TimeSpan.Zero }.Max();
 
 		public static void SetTimeEntryRepository(ITimeEntryRepository repository)
 		{
@@ -27,7 +28,7 @@ namespace MyTimeTracker.Core
 		public string ToPrettyString()
 		{
 			return
-				$"{(StartTime == default ? "null" : StartTime.ToShortTimeString())} -> {(StopTime == default ? "null" : StopTime.ToShortTimeString())} | {TotalHours:F} | {Activity} | {Comment}";
+				$"{(StartTime == default ? "null" : StartTime.ToShortTimeString())} -> {(StopTime == default ? "null" : StopTime.ToShortTimeString())} | {Duration} | {Activity} | {Comment}";
 		}
 	}
 }
