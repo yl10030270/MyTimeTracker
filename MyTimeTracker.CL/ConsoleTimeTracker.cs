@@ -56,6 +56,13 @@ namespace MyTimeTracker.CL
 								: PunchClock.TimeCard.ToPrettyString());
 							Console.WriteLine();
 							break;
+						case "d":
+						case "D":
+							Console.WriteLine();
+							PunchClock.TimeCard.RemoveTimeEntry(Convert.ToInt64(input[1]));
+							Console.WriteLine(PunchClock.TimeCard.ToPrettyString());
+							Console.WriteLine();
+							break;
 						case "s":
 						case "S":
 							Console.WriteLine();

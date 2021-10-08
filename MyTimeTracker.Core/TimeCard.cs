@@ -32,6 +32,16 @@ namespace MyTimeTracker.Core
 			TimeEntries.Add(timeEntry);
 		}
 
+		public void RemoveTimeEntry(long timeEntryId)
+		{
+			var timeEntryToRemove = TimeEntries.FirstOrDefault(x => x.TimeEntryId == timeEntryId);
+			if (timeEntryToRemove != null)
+			{
+				timeEntryToRemove.Delete();
+				TimeEntries.Remove(timeEntryToRemove);
+			}
+
+		}
 		public void Load()
 		{
 			TimeEntries = _repository!.GetTimeEntries(Date).ToList();

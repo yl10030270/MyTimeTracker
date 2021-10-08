@@ -22,5 +22,12 @@ namespace MyTimeTracker.Core.DAL
 				dbContext.Entry(timeEntry).State = EntityState.Modified;
 			dbContext.SaveChanges();
 		}
+
+		public void Delete(TimeEntry timeEntry)
+		{
+			using var db = new TimeTrackerSqliteContext();
+			db.TimeEntries.Remove(timeEntry);
+			db.SaveChanges();
+		}
 	}
 }

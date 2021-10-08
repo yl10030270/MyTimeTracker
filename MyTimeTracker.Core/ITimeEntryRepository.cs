@@ -7,5 +7,6 @@ namespace MyTimeTracker.Core
 	{
 		IEnumerable<TimeEntry> GetTimeEntries(DateTime date);
 		void Save(TimeEntry timeEntry);
+		void Delete(TimeEntry timeEntry);
 	}
 }

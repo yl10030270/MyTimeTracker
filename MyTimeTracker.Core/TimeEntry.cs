@@ -28,7 +28,14 @@ namespace MyTimeTracker.Core
 		public string ToPrettyString()
 		{
 			return
-				$"{(StartTime == default ? "null" : StartTime.ToShortTimeString())} -> {(StopTime == default ? "null" : StopTime.ToShortTimeString())} | {Duration} | {Activity} | {Comment}";
+				$"{TimeEntryId} | {(StartTime == default ? "null" : StartTime.ToShortTimeString())} -> {(StopTime == default ? "null" : StopTime.ToShortTimeString())} | {Duration} | {Activity} | {Comment}";
+		}
+
+		public void Delete()
+		{
+			if (this.IsActive)
+				throw new InvalidOperationException("Can't Delete Active record.");
+			_repository!.Delete(this);
 		}
 	}
 }
