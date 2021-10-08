@@ -47,6 +47,8 @@ namespace MyTimeTracker.CL
 							break;
 						case "p":
 						case "P":
+							if (input.Length > 1)
+								PunchClock.CurrentTimeEntry.Comment = input.Skip(1).JoinToString(null, " ");
 							PunchClock.Punch();
 							Console.WriteLine();
 							Console.WriteLine(PunchClock.CurrentTimeEntry.IsActive
