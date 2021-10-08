@@ -57,7 +57,17 @@ namespace MyTimeTracker.CL
 						case "s":
 						case "S":
 							Console.WriteLine();
-							Console.WriteLine(PunchClock.TimeCard.ToPrettyString());
+							if (input.Length > 1)
+							{
+								var viewDate = Convert.ToDateTime(input[1]);
+								var timeCard = new TimeCard(viewDate);
+								timeCard.Load();
+								Console.WriteLine(timeCard.ToPrettyString());
+							}
+							else
+							{
+								Console.WriteLine(PunchClock.TimeCard.ToPrettyString());
+							}
 							Console.WriteLine();
 							break;
 						case "q":
@@ -104,5 +114,6 @@ namespace MyTimeTracker.CL
 			}
 		}
 
+		
 	}
 }
